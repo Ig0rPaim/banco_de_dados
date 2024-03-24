@@ -1,0 +1,1 @@
+arquivo default para todas as branch, cada atividade tem seu próprio ramo para melhor separá os commits
