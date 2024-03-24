@@ -1,0 +1,30 @@
+version: '3.3'
+
+services:
+  base_academica:
+    build: './base_academica'
+    restart: always
+    env_file:
+      - ./base_academica/config/EnvironmentVariables.env
+    networks:
+      - relatorioTecnico
+    container_name: base_academica
+    volumes:
+      - ./base_academica/initdb.sh:/var/lib/postgresql/data
+      - ./base_academica/volume_base_academica:/var/lib/postgresql/data
+  
+  base_idh:
+    build: './base_idh'
+    restart: always
+    env_file:
+      - ./base_idh/config/EnvironmentVariables.env
+    networks:
+      - relatorioTecnico
+    container_name: base_idh
+    volumes:
+      - ./base_idh/initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
+      - ./base_idh/volume_base_idh:/var/lib/postgresql/data
+
+networks:
+  relatorioTecnico:
+    driver: bridge
