@@ -10,8 +10,10 @@ services:
       - relatorioTecnico
     container_name: base_academica
     volumes:
-      - ./base_academica/initdb.sh:/var/lib/postgresql/data
+      - ./base_academica/initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
       - ./base_academica/volume_base_academica:/var/lib/postgresql/data
+    ports:
+      - "5431:5432"
   
   base_idh:
     build: './base_idh'
@@ -24,6 +26,9 @@ services:
     volumes:
       - ./base_idh/initdb.sh:/docker-entrypoint-initdb.d/initdb.sh
       - ./base_idh/volume_base_idh:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+  
 
 networks:
   relatorioTecnico:
