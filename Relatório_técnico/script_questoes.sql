@@ -19,7 +19,10 @@ on m.codestado = e.codestado
 group by m.nomemunicipio
 having count(nomemunicipio) > 1;
 
--- teste
+-- 5ª questão
+select mu.nomemunicipio as "Município", idh_longevidade as "Longevidade" from indice as i
+inner join municipio as mu on i.codmunicipio = mu.codmunicipio
+where idh_longevidade = (select max(idh_longevidade) from indice where ano = 2000); 
 
 --questão 7
 select codmunicipio, idh_renda
