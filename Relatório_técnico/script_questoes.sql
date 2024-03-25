@@ -19,7 +19,7 @@ on m.codestado = e.codestado
 group by m.nomemunicipio
 having count(nomemunicipio) > 1;
 
-
+-- teste
 
 --questão 7
 select codmunicipio, idh_renda
