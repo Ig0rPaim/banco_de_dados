@@ -52,3 +52,28 @@ inner join
     on m1.codmunicipio = m2.codmunicipio
 ) as e2
 on e1.codestado = e2.codestado;
+
+--questão 10
+select *
+from 
+(
+        select i.ano, m.nomemunicipio,idh_geral as idh_geral_91, 
+        idh_renda as idh_renda_91, 
+        idh_longevidade as idh_longevidade_91, 
+        idh_educacao as idh_educacao_91
+        from indice as i
+        inner join municipio as m
+        on m. codmunicipio = i.codmunicipio
+        where m.codestado = 5 and i.ano = 1991
+    union
+        select i.ano, m.nomemunicipio,idh_geral as idh_geral_00, 
+        idh_renda as idh_renda_00, 
+        idh_longevidade as idh_longevidade_00, 
+        idh_educacao as idh_educacao_00
+        from indice as i
+        inner join municipio as m
+        on m. codmunicipio = i.codmunicipio
+        where m.codestado = 5 and i.ano = 2000
+    )
+order by nomemunicipio, ano
+;
