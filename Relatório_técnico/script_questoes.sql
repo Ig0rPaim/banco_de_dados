@@ -19,6 +19,12 @@ on m.codestado = e.codestado
 group by m.nomemunicipio
 having count(nomemunicipio) > 1;
 
+-- 4ª questão
+
+select e.siglaestado as sigla, count(codmunicipio) as "quantidade de municipios" from estado as e
+inner join municipio as mu on mu.codestado = e.codestado
+group by sigla;
+
 -- 5ª questão
 select mu.nomemunicipio as "Município", idh_longevidade as "Longevidade" from indice as i
 inner join municipio as mu on i.codmunicipio = mu.codmunicipio
