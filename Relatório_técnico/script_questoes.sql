@@ -38,7 +38,12 @@ where idh_longevidade = (select max(idh_longevidade) from indice where ano = 200
 
 
 --questão 6
-
+select nomemunicipio, max(idh_educacao) as idh, ano
+from municipio 
+inner join indice 
+on indice.codmunicipio = municipio.codmunicipio
+group by nomemunicipio, ano 
+having nomemunicipio = 'Salvador';
 
 
 --questão 7
