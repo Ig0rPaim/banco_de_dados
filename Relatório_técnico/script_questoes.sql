@@ -1,3 +1,19 @@
+--questão 1
+select * 
+from municipio 
+inner join estado  
+on estado.codestado = municipio.codestado 
+where codregiao = 1;
+
+--2° questão
+select nomemunicipio,
+count(m.codmunicipio) as repeticoes
+from estado as e
+inner join municipio as m
+on m.codestado = e.codestado
+group by m.nomemunicipio
+having count(nomemunicipio) > 1;
+
 
 -- 3° questão
 select avg(municipios_por_regiao) as Media_municipios_por_regiao
@@ -9,16 +25,6 @@ from(
     group by codregiao
 );
 
-
---2° questão
-select nomemunicipio,
-count(m.codmunicipio) as repeticoes
-from estado as e
-inner join municipio as m
-on m.codestado = e.codestado
-group by m.nomemunicipio
-having count(nomemunicipio) > 1;
-
 -- 4ª questão
 
 select e.siglaestado as sigla, count(codmunicipio) as "quantidade de municipios" from estado as e
@@ -29,6 +35,11 @@ group by sigla;
 select mu.nomemunicipio as "Município", idh_longevidade as "Longevidade" from indice as i
 inner join municipio as mu on i.codmunicipio = mu.codmunicipio
 where idh_longevidade = (select max(idh_longevidade) from indice where ano = 2000); 
+
+
+--questão 6
+
+
 
 --questão 7
 select codmunicipio, idh_renda
@@ -52,6 +63,15 @@ inner join
     on m1.codmunicipio = m2.codmunicipio
 ) as e2
 on e1.codestado = e2.codestado;
+
+
+--questão 9
+select max(idh_educacao) as idh_educacao, codestado 
+from municipio 
+inner join indice 
+on municipio.codmunicipio = indice.codmunicipio
+group by codestado
+order by codestado;
 
 --questão 10
 select *
