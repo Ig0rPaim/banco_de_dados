@@ -102,3 +102,15 @@ from
     )
 order by nomemunicipio, ano
 ;
+
+-- questão 11
+
+select 
+	e.siglaestado,
+	avg(case when ano = 1991 then i.idh_geral end) as idh_geral_1991,
+	avg(case when ano = 2000 then i.idh_geral end) as idh_geral_2000
+from indice as i
+inner join municipio as mu on i.codmunicipio = mu.codmunicipio
+inner join estado as e on mu.codestado = e.codestado
+where e.siglaestado = 'SC' or e.siglaestado = 'AL'
+group by e.siglaestado;
